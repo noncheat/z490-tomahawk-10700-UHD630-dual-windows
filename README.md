@@ -41,5 +41,5 @@ Windows dual macOS, when change os just switch Monitor 1 sources from DisplayPor
   ```
   HideAuxiliary: <true/>
   ScanPolicy: <integer>17760515</integer>
-  boot-args: <string></string>
+  boot-args: <string>-wegnoegpu</string>
   ```
