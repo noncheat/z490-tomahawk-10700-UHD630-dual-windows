@@ -57,3 +57,10 @@ Windows dual macOS
   SecureBootModel: <string>Default</string>
   boot-args: <string>-wegnoegpu</string>
   ```
+
+## When update MacOS:
+> If has problems:
+- Secure Boot: Disabled
+- Initiate Graphic Adapter: IGD
+- Boot Order: OpenCore
+- SecureBootModel: <string>Disabled</string>
