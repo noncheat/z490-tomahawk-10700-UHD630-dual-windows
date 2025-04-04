@@ -47,6 +47,8 @@
                 <false/>
                 <key>AvoidRuntimeDefrag</key>
                 <true/>
+                <key>ClearTaskSwitchBit</key>
+                <false/>
                 <key>DevirtualiseMmio</key>
                 <true/>
                 <key>DisableSingleUser</key>
@@ -58,7 +60,7 @@
                 <key>EnableSafeModeSlide</key>
                 <true/>
                 <key>EnableWriteUnprotector</key>
-                <false/>
+                <true/>
                 <key>FixupAppleEfiImages</key>
                 <false/>
                 <key>ForceBooterSignature</key>
@@ -681,7 +683,7 @@
                 <key>CustomSMBIOSGuid</key>
                 <true/>
                 <key>DisableIoMapper</key>
-                <false/>
+                <true/>
                 <key>DisableIoMapperMapping</key>
                 <true/>
                 <key>DisableLinkeditJettison</key>
@@ -829,7 +831,7 @@
                 <key>ScanPolicy</key>
                 <integer>0</integer>
                 <key>SecureBootModel</key>
-                <string>Default</string>
+                <string>Disabled</string>
                 <key>Vault</key>
                 <string>Optional</string>
             </dict>
@@ -1292,6 +1294,8 @@
             </dict>
             <key>ReservedMemory</key>
             <array/>
+            <key>Unload</key>
+		    <array/>
         </dict>
     </dict>
 </plist>
