@@ -35,7 +35,7 @@ Windows dual macOS
 - Legacy USB Support: Auto (if Disabled then can't boot from USB)
 
 ## Notes
-- ~~To switch os, Press F11 at boot to enter Boot Menu, select hard drive, after boot few seconds switch Monitor 1 sources.~~
+- ~~To switch os, Press F11 at boot to enter Boot Menu, select hard drive, after boot few seconds (until loading stuck) switch Monitor 1 sources.~~
 - Monitor 1 Input Auto Switch: ON so do not need do anything when change OS
 
 ## After install:
@@ -58,9 +58,55 @@ Windows dual macOS
   boot-args: <string>-wegnoegpu</string>
   ```
 
-## When update MacOS:
-> If has problems:
+## Issues:
+> When update MacOS if has problems:
 - Secure Boot: Disabled
 - Initiate Graphic Adapter: IGD
 - Boot Order: OpenCore
 - SecureBootModel: <string>Disabled</string>
+
+> Keyboard layout `/~ (back tick / tide) and §/±
+- https://www.digihunch.com/2022/11/key-mapping-on-external-pc-keyboard-on-macbook/
+- Change `ProductID` script below
+- launchctl load ~/Library/LaunchAgents/com.local.hidutilKeyMapping.plist
+
+  ```
+  <?xml version="1.0" encoding="utf-8"?>
+  <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+    "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+  <plist version="1.0">
+    <dict>
+      <key>Label</key>
+      <string>local.hidutilKeyMapping</string>
+      <key>LaunchEvents</key>
+      <dict>
+        <key>com.apple.iokit.matching</key>
+        <dict>
+          <key>com.apple.usb.device</key>
+          <dict>
+            <key>IOMatchLaunchStream</key>
+            <true />
+            <key>IOProviderClass</key>
+            <string>IOUSBDevice</string>
+            <key>idProduct</key>
+            <string>*</string>
+            <key>idVendor</key>
+            <string>*</string>
+          </dict>
+        </dict>
+      </dict>
+      <key>ProgramArguments</key>
+      <array>
+        <string>/usr/bin/hidutil</string>
+        <string>property</string>
+        <string>--matching</string>
+        <string>{"ProductID":0xa67}</string>
+        <string>--set</string>
+        <string>
+        {"UserKeyMapping":[{"HIDKeyboardModifierMappingSrc":0x700000035,"HIDKeyboardModifierMappingDst":0x700000064},{"HIDKeyboardModifierMappingSrc":0x700000064,"HIDKeyboardModifierMappingDst":0x700000035}]}</string>
+      </array>
+      <key>RunAtLoad</key>
+      <true />
+    </dict>
+  </plist>
+  ```
