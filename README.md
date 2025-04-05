@@ -69,7 +69,12 @@ Windows dual macOS
 > Keyboard layout `/~ (back tick / tide) and §/±
 - https://www.digihunch.com/2022/11/key-mapping-on-external-pc-keyboard-on-macbook/
 - Change `ProductID` script below
-- launchctl load ~/Library/LaunchAgents/com.local.hidutilKeyMapping.plist
+- ```
+  launchctl load ~/Library/LaunchAgents/com.local.hidutilKeyMapping.plist
+  ```
+  Below is for USB keyboard, if using Bluetooth keyboard should follow above digihunch guide.
+
+  change `LaunchEvents` on `com.apple.bluetooth.hostController` instead of `com.apple.usb.device`
 
   ```
   <?xml version="1.0" encoding="utf-8"?>
