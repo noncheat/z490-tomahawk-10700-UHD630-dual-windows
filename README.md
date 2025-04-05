@@ -5,7 +5,7 @@ Windows dual macOS
   + 1x Realtek® RTL8125B 2.5G LAN
   + 1x Intel I219V 1G LAN
 - Cpu Intel® Core™ i7-10700
-- Monitor 1 Gigabyte G27Q System > Other Settings > Input Auto Switch: ON
+- Monitor 1 Gigabyte G27Q System > Other Settings > Input Auto Switch: ~~ON~~ OFF
 - IGPU Intel UHD 630
   + Mainboard HDMI connect to Monitor 1 HDMI (if want use DisplayPort maybe need frame patch framebuffer-con1 in config.plist? Not test yet)
 - Nvidia Galax RTX 2060 12GB
@@ -27,7 +27,7 @@ Windows dual macOS
 - Secure Boot: Disabled (After install, recommend sign OpenCore efi to enable Secure Boot for working with Windows)
 - Advanced > PCIe > Above 4G memory/Crypto Currency mining: Enabled (Default)
 - Advanced > PCIe > ResizebleBar: Enabled (Default)
-- Initiate Graphic Adapter = IGD
+- Initiate Graphic Adapter = PEG
   + External gpu Nvidia is Windows primary, igpu still working as macOS primary
 - Internal Graphics: Enabled
 - IGD Multi-Monitor: Enabled
@@ -35,8 +35,8 @@ Windows dual macOS
 - Legacy USB Support: Auto (if Disabled then can't boot from USB)
 
 ## Notes
-- ~~To switch os, Press F11 at boot to enter Boot Menu, select hard drive, after boot few seconds (until loading stuck) switch Monitor 1 sources.~~
-- Monitor 1 Input Auto Switch: ON so do not need do anything when change OS
+- To switch os, Press F11 at boot to enter Boot Menu, move cursor to OpenCore, switch Monitor 1 sources to HDMI (connected to iGPU), press Enter to boot OpenCore
+- ~~Monitor 1 Input Auto Switch: ON so do not need do anything when change OS~~
 
 ## After install:
 - Recommend sign OpenCore efi to enable Secure Boot for working with Windows [OpenCore-and-UEFI-Secure-Boot](https://github.com/perez987/OpenCore-and-UEFI-Secure-Boot)
@@ -63,6 +63,7 @@ Windows dual macOS
 - Secure Boot: Disabled
 - Initiate Graphic Adapter: IGD
 - Boot Order: OpenCore
+- Monitor 1 source HDMI
 - SecureBootModel: <string>Disabled</string>
 
 > Keyboard layout `/~ (back tick / tide) and §/±
