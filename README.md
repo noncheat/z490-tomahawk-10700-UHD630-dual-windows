@@ -1,6 +1,6 @@
 Windows dual macOS
 
-## Specs:
+## Specs
 - Mainboard MSI Z490 Tomahawk
   + 1x Realtek® RTL8125B 2.5G LAN
   + 1x Intel I219V 1G LAN
@@ -19,7 +19,7 @@ Windows dual macOS
 - HDD HGST HTS725050A7E635  OPAL 500GB
 - Wifi AX200
 
-## BIOS (version 7C80v1D):
+## BIOS (version 7C80v1D)
 - MSI Fast Boot: Disabled
 - Fast Boot: Disabled
 - OC > CPU Futures > CFG Lock: Disabled
@@ -27,7 +27,8 @@ Windows dual macOS
 - Secure Boot: Disabled (After install, recommend sign OpenCore efi to enable Secure Boot for working with Windows)
 - Advanced > PCIe > Above 4G memory/Crypto Currency mining: Enabled (Default)
 - Advanced > PCIe > ResizebleBar: Enabled (Default)
-- Initiate Graphic Adapter = PEG
+- Initiate Graphic Adapter = ~~PEG~~ IGD
+  + For stable, prevent Green screen when boot macOS
   + External gpu Nvidia is Windows primary, igpu still working as macOS primary
 - Internal Graphics: Enabled
 - IGD Multi-Monitor: Enabled
@@ -35,10 +36,11 @@ Windows dual macOS
 - Legacy USB Support: Auto (if Disabled then can't boot from USB)
 
 ## Notes
-- To switch os, Press F11 at boot to enter Boot Menu, move cursor to OpenCore, switch Monitor 1 sources to HDMI (connected to iGPU), press Enter to boot OpenCore
+- To switch os, Press F11 at boot to enter Boot Menu, switch Monitor 1 sources to HDMI (connected to iGPU)
+- To enter BIOS setting, Press Delete at boot, switch Monitor 1 sources to HDMI (connected to iGPU) because Initiate Graphic Adapter = IGD
 - ~~Monitor 1 Input Auto Switch: ON so do not need do anything when change OS~~
 
-## After install:
+## After install
 - Recommend sign OpenCore efi to enable Secure Boot for working with Windows [OpenCore-and-UEFI-Secure-Boot](https://github.com/perez987/OpenCore-and-UEFI-Secure-Boot)
 
   https://github.com/perez987/OpenCore-and-UEFI-Secure-Boot/blob/main/guide/WSL%20Ubuntu%20VM%20on%20Windows.md
@@ -58,7 +60,7 @@ Windows dual macOS
   boot-args: <string>-wegnoegpu</string>
   ```
 
-## Issues:
+## Issues
 > When update MacOS if has problems:
 - Secure Boot: Disabled
 - Initiate Graphic Adapter: IGD
@@ -68,13 +70,13 @@ Windows dual macOS
 
 > Keyboard layout `/~ (back tick / tide) and §/±
 - https://www.digihunch.com/2022/11/key-mapping-on-external-pc-keyboard-on-macbook/
-- Change `ProductID` script below
-- ```
-  launchctl load ~/Library/LaunchAgents/com.local.hidutilKeyMapping.plist
+- Create plist file, maybe need change `ProductID`
+  > Below is for USB keyboard, if using Bluetooth keyboard should follow above digihunch guide.
+  >
+  > change `LaunchEvents` on `com.apple.bluetooth.hostController` instead of `com.apple.usb.device`
   ```
-  Below is for USB keyboard, if using Bluetooth keyboard should follow above digihunch guide.
-
-  change `LaunchEvents` on `com.apple.bluetooth.hostController` instead of `com.apple.usb.device`
+  touch ~/Library/LaunchAgents/com.local.hidutilKeyMapping.plist
+  ```
 
   ```
   <?xml version="1.0" encoding="utf-8"?>
@@ -115,4 +117,8 @@ Windows dual macOS
       <true />
     </dict>
   </plist>
+  ```
+- Run command
+  ```
+  launchctl load ~/Library/LaunchAgents/com.local.hidutilKeyMapping.plist
   ```
