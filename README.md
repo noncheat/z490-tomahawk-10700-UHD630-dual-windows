@@ -27,17 +27,16 @@ Windows dual macOS
 - Secure Boot: Disabled (After install, recommend sign OpenCore efi to enable Secure Boot for working with Windows)
 - Advanced > PCIe > Above 4G memory/Crypto Currency mining: Enabled (Default)
 - Advanced > PCIe > ResizebleBar: Enabled (Default)
-- Initiate Graphic Adapter = ~~PEG~~ IGD
-  + For stable, prevent Green screen when boot macOS
-  + External gpu Nvidia is Windows primary, igpu still working as macOS primary
+- Legacy USB Support: Auto (if Disabled then can't boot from USB)
 - Internal Graphics: Enabled
 - IGD Multi-Monitor: Enabled
 - iGPU Memory: 64MB
-- Legacy USB Support: Auto (if Disabled then can't boot from USB)
+- Initiate Graphic Adapter = ~~PEG~~ IGD
+  + For stable, prevent Green screen when boot macOS
+  + External gpu Nvidia is Windows primary, igpu still working as macOS primary
 
 ## Notes
-- To switch os, Press F11 at boot to enter Boot Menu, switch Monitor 1 sources to HDMI (connected to iGPU)
-- To enter BIOS setting, Press Delete at boot, switch Monitor 1 sources to HDMI (connected to iGPU) because Initiate Graphic Adapter = IGD
+- To switch os, enter BIOS setting,... Shutdown first! switch Monitor 1 sources to HDMI before power up because Initiate Graphic Adapter = IGD for stable
 - ~~Monitor 1 Input Auto Switch: ON so do not need do anything when change OS~~
 
 ## After install
@@ -61,14 +60,14 @@ Windows dual macOS
   ```
 
 ## Issues
-> When update MacOS if has problems:
+#### When update MacOS if has problems
 - Secure Boot: Disabled
 - Initiate Graphic Adapter: IGD
 - Boot Order: OpenCore
 - Monitor 1 source HDMI
 - SecureBootModel: <string>Disabled</string>
 
-> Keyboard layout `/~ (back tick / tide) and §/±
+#### Keyboard layout wrong ` / ~ (back tick / tide) and § / ±
 - https://www.digihunch.com/2022/11/key-mapping-on-external-pc-keyboard-on-macbook/
 - Create plist file, maybe need change `ProductID`
   > Below is for USB keyboard, if using Bluetooth keyboard should follow above digihunch guide.
@@ -77,7 +76,6 @@ Windows dual macOS
   ```
   touch ~/Library/LaunchAgents/com.local.hidutilKeyMapping.plist
   ```
-
   ```
   <?xml version="1.0" encoding="utf-8"?>
   <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
